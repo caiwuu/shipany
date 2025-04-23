@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000
+@apiKey = sk-xxx
+
+### ping api
+POST {{baseUrl}}/api/ping
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "message": "hello"
+}
+
+### gen image
+POST {{baseUrl}}/api/demo/gen-image
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "prompt": "a beautiful girl running with 2 cats",
+  "provider": "replicate",
+  "model": "black-forest-labs/flux-schnell"
+}
+
+### gen text 
+POST {{baseUrl}}/api/demo/gen-text
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "prompt": "9.11 vs 9.8, which one is greater?",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-r1"
+}
