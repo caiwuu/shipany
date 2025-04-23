@@ -19,9 +19,7 @@ export interface FormField {
     | "password"
     | "select"
     | "url"
-    | "editor"
     | "code_editor"
-    | "richtext_editor"
     | "markdown_editor";
   placeholder?: string;
   options?: {

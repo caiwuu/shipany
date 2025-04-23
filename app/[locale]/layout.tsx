@@ -16,11 +16,10 @@ const fontSans = FontSans({
 });
 
 export async function generateMetadata({
-  params,
+  params: { locale },
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }): Promise<Metadata> {
-  const { locale } = await params;
   const t = await getTranslations();
 
   return {
@@ -35,12 +34,11 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }>) {
-  const { locale } = await params;
   const messages = await getMessages();
 
   return (

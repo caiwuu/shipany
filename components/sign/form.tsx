@@ -36,26 +36,22 @@ export default function SignForm({
         <CardContent>
           <div className="grid gap-6">
             <div className="flex flex-col gap-4">
-              {process.env.NEXT_PUBLIC_AUTH_GOOGLE_ENABLED === "true" && (
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => signIn("google")}
-                >
-                  <SiGoogle className="w-4 h-4" />
-                  {t("sign_modal.google_sign_in")}
-                </Button>
-              )}
-              {process.env.NEXT_PUBLIC_AUTH_GITHUB_ENABLED === "true" && (
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => signIn("github")}
-                >
-                  <SiGithub className="w-4 h-4" />
-                  {t("sign_modal.github_sign_in")}
-                </Button>
-              )}
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => signIn("google")}
+              >
+                <SiGoogle className="w-4 h-4" />
+                {t("sign_modal.google_sign_in")}
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => signIn("github")}
+              >
+                <SiGithub className="w-4 h-4" />
+                {t("sign_modal.github_sign_in")}
+              </Button>
             </div>
 
             {false && (

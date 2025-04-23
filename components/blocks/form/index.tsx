@@ -22,7 +22,6 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/icon";
 import { Input } from "@/components/ui/input";
 import { Loader } from "lucide-react";
-import MarkdownEditor from "../editor/markdown";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
@@ -185,11 +184,6 @@ export default function ({
                           ))}
                         </SelectContent>
                       </Select>
-                    ) : item.type === "markdown_editor" ? (
-                      <MarkdownEditor
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
                     ) : (
                       <Input
                         {...field}

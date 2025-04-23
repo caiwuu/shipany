@@ -42,3 +42,6 @@ Makefile
 .wrangler
 wrangler.toml
 supabase
+
+data/*.db
+drizzle/*/migration

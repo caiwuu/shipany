@@ -1,5 +1,5 @@
 import { getUserEmail, getUserUuid } from "@/services/user";
-import { insertOrder, updateOrderSession } from "@/models/order";
+import { insertOrder, updateOrder } from "@/models/order";
 import { respData, respErr } from "@/lib/resp";
 
 import { Order } from "@/types/order";
@@ -161,7 +161,10 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create(options);
 
     const stripe_session_id = session.id;
-    await updateOrderSession(order_no, stripe_session_id, order_detail);
+    await updateOrder(order_no, {
+      stripe_session_id,
+      order_detail,
+    });
 
     return respData({
       public_key: process.env.STRIPE_PUBLIC_KEY,

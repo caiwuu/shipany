@@ -20,7 +20,7 @@ export default function BlogDetail({ post }: { post: Post }) {
             <Avatar className="h-8 w-8 border">
               <AvatarImage
                 src={post.author_avatar_url}
-                alt={post.author_name}
+                alt={post.author_name ?? ""}
               />
             </Avatar>
           )}

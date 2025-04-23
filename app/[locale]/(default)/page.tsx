@@ -13,11 +13,10 @@ import Testimonial from "@/components/blocks/testimonial";
 import { getLandingPage } from "@/services/page";
 
 export async function generateMetadata({
-  params,
+  params: { locale },
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
   let canonicalUrl = `${process.env.NEXT_PUBLIC_WEB_URL}`;
 
   if (locale !== "en") {
@@ -32,11 +31,10 @@ export async function generateMetadata({
 }
 
 export default async function LandingPage({
-  params,
+  params: { locale },
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
   const page = await getLandingPage(locale);
 
   return (

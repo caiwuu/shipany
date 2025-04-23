@@ -1,11 +1,11 @@
 import { PostStatus, findPostBySlug, insertPost } from "@/models/post";
+import { getIsoTimestr, getTime, getTimestamp } from "@/lib/time";
 import { localeNames, locales } from "@/i18n/locale";
 
 import Empty from "@/components/blocks/empty";
 import FormSlot from "@/components/dashboard/slots/form";
 import { Form as FormSlotType } from "@/types/slots/form";
 import { Post } from "@/types/post";
-import { getIsoTimestr } from "@/lib/time";
 import { getUserInfo } from "@/services/user";
 import { getUuid } from "@/lib/hash";
 
@@ -63,16 +63,6 @@ export default async function () {
         },
       },
       {
-        name: "status",
-        title: "Status",
-        type: "select",
-        options: Object.values(PostStatus).map((status: string) => ({
-          title: status,
-          value: status,
-        })),
-        value: PostStatus.Created,
-      },
-      {
         name: "description",
         title: "Description",
         type: "textarea",
@@ -99,8 +89,11 @@ export default async function () {
       {
         name: "content",
         title: "Content",
-        type: "markdown_editor",
+        type: "textarea",
         placeholder: "Post Content",
+        attributes: {
+          rows: 10,
+        },
       },
     ],
     submit: {
@@ -113,7 +106,6 @@ export default async function () {
         const title = data.get("title") as string;
         const slug = data.get("slug") as string;
         const locale = data.get("locale") as string;
-        const status = data.get("status") as string;
         const description = data.get("description") as string;
         const cover_url = data.get("cover_url") as string;
         const author_name = data.get("author_name") as string;
@@ -139,7 +131,7 @@ export default async function () {
         const post: Post = {
           uuid: getUuid(),
           created_at: getIsoTimestr(),
-          status: status as PostStatus,
+          status: PostStatus.Created,
           title,
           slug,
           locale,

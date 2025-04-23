@@ -1,3 +1,5 @@
+import { getIsoTimestr, getTime } from "@/lib/time";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
@@ -5,7 +7,6 @@ import { NextAuthConfig } from "next-auth";
 import { Provider } from "next-auth/providers/index";
 import { User } from "@/types/user";
 import { getClientIp } from "@/lib/ip";
-import { getIsoTimestr } from "@/lib/time";
 import { getUuid } from "@/lib/hash";
 import { saveUser } from "@/services/user";
 

@@ -1,7 +1,3 @@
-export interface Apikey {
-  api_key: string;
-  title: string;
-  user_uuid: string;
-  created_at: string;
-  status: string;
-}
+import { apikeys } from "@/drizzle/schema";
+
+export type Apikey = typeof apikeys.$inferInsert;

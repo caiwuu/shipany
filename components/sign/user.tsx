@@ -18,14 +18,14 @@ import { User } from "@/types/user";
 import { signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
-export default function SignUser({ user }: { user: User }) {
+export default function ({ user }: { user: User }) {
   const t = useTranslations();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
-          <AvatarImage src={user.avatar_url} alt={user.nickname} />
+          <AvatarImage src={user.avatar_url ?? ""} alt={user.nickname ?? ""} />
           <AvatarFallback>{user.nickname}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -36,14 +36,17 @@ export default function SignUser({ user }: { user: User }) {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem className="flex justify-center cursor-pointer">
-          <Link href="/my-orders">{t("user.user_center")}</Link>
+          <Link href="/my-orders">{t("user.my_orders")}</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
         <DropdownMenuItem className="flex justify-center cursor-pointer">
-          <Link href="/admin/users" target="_blank">
-            {t("user.admin_system")}
-          </Link>
+          <Link href="/my-credits">{t("my_credits.title")}</Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem className="flex justify-center cursor-pointer">
+          <Link href="/api-keys">{t("api_keys.title")}</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 

@@ -1,13 +1,8 @@
-import {
-  CreditsTransType,
-  increaseCredits,
-  updateCreditForOrder,
-} from "./credit";
-import { findOrderByOrderNo, updateOrderStatus } from "@/models/order";
-import { getIsoTimestr, getOneYearLaterTimestr } from "@/lib/time";
+import { CreditsTransType, increaseCredits } from "./credit";
+import { OrderStatus, findOrderByOrderNo, updateOrder } from "@/models/order";
+import { getIsoTimestr, getTime } from "@/lib/time";
 
 import Stripe from "stripe";
-import { updateAffiliateForOrder } from "./affiliate";
 
 export async function handleOrderSession(session: Stripe.Checkout.Session) {
   try {
@@ -31,16 +26,22 @@ export async function handleOrderSession(session: Stripe.Checkout.Session) {
     }
 
     const paid_at = getIsoTimestr();
-    await updateOrderStatus(order_no, "paid", paid_at, paid_email, paid_detail);
+    await updateOrder(order_no, {
+      status: OrderStatus.Paid,
+      paid_at,
+      paid_email,
+      paid_detail,
+    });
 
-    if (order.user_uuid) {
-      if (order.credits > 0) {
-        // increase credits for paied order
-        await updateCreditForOrder(order);
-      }
-
-      // update affiliate for paied order
-      await updateAffiliateForOrder(order);
+    if (order.user_uuid && order.credits > 0) {
+      // increase credits for paied order
+      await increaseCredits({
+        user_uuid: order.user_uuid,
+        trans_type: CreditsTransType.OrderPay,
+        credits: order.credits,
+        expired_at: order.expired_at || undefined,
+        order_no: order_no,
+      });
     }
 
     console.log(

@@ -9,9 +9,7 @@
     "sign_out": "退出登录",
     "credits": "额度",
     "api_keys": "API 密钥",
-    "my_orders": "我的订单",
-    "user_center": "用户中心",
-    "admin_system": "管理后台"
+    "my_orders": "我的订单"
   },
   "sign_modal": {
     "sign_in_title": "登录",
@@ -84,33 +82,5 @@
     "title": "博客",
     "description": "关于 ShipAny 的新闻、资源和更新",
     "read_more_text": "阅读更多"
-  },
-  "my_invites": {
-    "title": "我的邀请",
-    "description": "查看您的邀请记录",
-    "no_invites": "未找到邀请记录",
-    "my_invite_link": "我的邀请链接",
-    "edit_invite_link": "编辑邀请链接",
-    "copy_invite_link": "复制邀请链接",
-    "invite_code": "邀请码",
-    "invite_tip": "每邀请 1 位朋友购买 ShipAny，奖励 $50。",
-    "invite_balance": "邀请奖励余额",
-    "total_invite_count": "总邀请人数",
-    "total_paid_count": "已充值人数",
-    "total_award_amount": "总奖励金额",
-    "update_invite_code": "设置邀请码",
-    "update_invite_code_tip": "输入你的自定义邀请码",
-    "update_invite_button": "保存",
-    "no_orders": "你需要先购买过 ShipAny 才能邀请朋友",
-    "no_affiliates": "你暂无邀请朋友的权限，请联系我们申请开通。",
-    "table": {
-      "invite_time": "邀请时间",
-      "invite_user": "邀请用户",
-      "status": "状态",
-      "reward_percent": "奖励比例",
-      "reward_amount": "奖励金额",
-      "pending": "已注册，未支付",
-      "completed": "已支付"
-    }
   }
 }

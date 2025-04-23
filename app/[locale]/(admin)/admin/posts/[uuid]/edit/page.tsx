@@ -2,7 +2,6 @@ import {
   PostStatus,
   findPostBySlug,
   findPostByUuid,
-  insertPost,
   updatePost,
 } from "@/models/post";
 import { localeNames, locales } from "@/i18n/locale";
@@ -14,18 +13,13 @@ import { Post } from "@/types/post";
 import { getIsoTimestr } from "@/lib/time";
 import { getUserInfo } from "@/services/user";
 
-export default async function ({
-  params,
-}: {
-  params: Promise<{ uuid: string }>;
-}) {
-  const { uuid } = await params;
+export default async function ({ params }: { params: { uuid: string } }) {
   const user = await getUserInfo();
   if (!user || !user.uuid) {
     return <Empty message="no auth" />;
   }
 
-  const post = await findPostByUuid(uuid);
+  const post = await findPostByUuid(params.uuid);
   if (!post) {
     return <Empty message="post not found" />;
   }
@@ -114,8 +108,11 @@ export default async function ({
       {
         name: "content",
         title: "Content",
-        type: "markdown_editor",
+        type: "textarea",
         placeholder: "Post Content",
+        attributes: {
+          rows: 10,
+        },
       },
     ],
     data: post,

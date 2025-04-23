@@ -10,10 +10,6 @@ CREATE TABLE users (
     signin_ip VARCHAR(255),
     signin_provider VARCHAR(50),
     signin_openid VARCHAR(255),
-    invite_code VARCHAR(255) NOT NULL default '',
-    updated_at timestamptz,
-    invited_by VARCHAR(255) NOT NULL default '',
-    is_affiliate BOOLEAN NOT NULL default false,
     UNIQUE (email, signin_provider)
 );
 
@@ -80,16 +76,4 @@ CREATE TABLE posts (
     author_name VARCHAR(255),
     author_avatar_url VARCHAR(255),
     locale VARCHAR(50)
-);
-
-create table affiliates (
-    id SERIAL PRIMARY KEY,
-    user_uuid VARCHAR(255) NOT NULL,
-    created_at timestamptz,
-    status VARCHAR(50) NOT NULL default '',
-    invited_by VARCHAR(255) NOT NULL,
-    paid_order_no VARCHAR(255) NOT NULL default '',
-    paid_amount INT NOT NULL default 0,
-    reward_percent INT NOT NULL default 0,
-    reward_amount INT NOT NULL default 0
 );

@@ -1,20 +1,8 @@
-export interface User {
-  id?: number;
-  uuid?: string;
-  email: string;
-  created_at?: string;
-  nickname: string;
-  avatar_url: string;
-  locale?: string;
-  signin_type?: string;
-  signin_ip?: string;
-  signin_provider?: string;
-  signin_openid?: string;
+import { users } from "@/drizzle/schema";
+
+export type User = typeof users.$inferInsert & {
   credits?: UserCredits;
-  invite_code?: string;
-  invited_by?: string;
-  is_affiliate?: boolean;
-}
+};
 
 export interface UserCredits {
   one_time_credits?: number;

@@ -5,6 +5,7 @@ import {
 } from "@/services/credit";
 import { respData, respErr } from "@/lib/resp";
 
+import { any } from "zod";
 import { getUserUuid } from "@/services/user";
 
 export async function POST(req: Request) {
@@ -29,8 +30,8 @@ export async function POST(req: Request) {
     return respData({
       pong: `received message: ${message}`,
     });
-  } catch (e) {
+  } catch (e: any) {
     console.log("test failed:", e);
-    return respErr("test failed");
+    return respErr(e.message);
   }
 }

@@ -75,11 +75,9 @@ const iconPackages: { [key: string]: any } = {
 export default function Icon({
   name,
   className,
-  onClick,
 }: {
   name: string;
   className?: string;
-  onClick?: () => void;
 }) {
   function getIcon(name: string): ReactNode {
     // Extract prefix (first two characters)
@@ -101,11 +99,5 @@ export default function Icon({
   if (!IconComponent) return null;
 
   // Render the icon component instead of returning it directly
-  return (
-    <IconComponent
-      className={className}
-      onClick={onClick}
-      style={{ cursor: onClick ? "pointer" : "default" }}
-    />
-  );
+  return <IconComponent className={className} />;
 }
